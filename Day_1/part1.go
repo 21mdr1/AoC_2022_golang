@@ -17,7 +17,6 @@ func HandleFile(fileName string, ch chan []int) {
 		panic(err)
 	}
 
-	//var calories [][]int
 	var elf []int
 	var text string
 	var food int
@@ -28,7 +27,6 @@ func HandleFile(fileName string, ch chan []int) {
 
 		if text == "" {
 			ch <- elf
-			//calories = append(calories, elf)
 			elf = []int{}
 			continue
 		}
@@ -39,7 +37,6 @@ func HandleFile(fileName string, ch chan []int) {
 
 	ch <- elf
 	close(ch)
-	//calories = append(calories, elf)
 
 }
 
@@ -70,26 +67,6 @@ func main() {
 		calories = append(calories, <-outch)
 
 	}
-
-	/*
-		for i, elf := range elves {
-			go func() {
-				fmt.Println("i", i)
-				total := 0
-				for _, food := range elf {
-					total += food
-				}
-				ch <- total
-			}()
-		}
-	*/
-
-	/*
-		var calories []int
-		for i := 0; i < len(elves); i++ {
-			calories = append(calories, <-ch)
-		}
-	*/
 
 	slices.Sort(calories)
 
